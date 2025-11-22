@@ -12,8 +12,9 @@ namespace Fiap.Api.FinancaFacil.Data.Contexts
             modelBuilder.Entity<ExampleModel>(entity =>
             {
                 entity.ToTable("Example");
+                
                 entity.HasKey(e => e.Id);
-                entity.Property(e => e.Name).IsRequired();
+                
                 entity.HasIndex(e => e.Email).IsUnique(); 
             });
         }
