@@ -1,5 +1,6 @@
 ﻿using Fiap.Api.FinancaFacil.Data.Contexts;
 using Fiap.Api.FinancaFacil.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fiap.Api.FinancaFacil.Data.Repository
 {
@@ -13,26 +14,34 @@ namespace Fiap.Api.FinancaFacil.Data.Repository
             _context = context;
         }
 
-        public IEnumerable<ExampleModel> GetAll() => _context.Examples.ToList();
+        public async Task<IList<ExampleModel>> GetAll(int lastReference, int size)
+        {
+            return await _context.Examples
+                .AsNoTracking()
+                .Where(c => c.Id > lastReference)
+                .OrderBy( c => c.Id) 
+                .Take(size + 1)
+                .ToListAsync();
+        }
 
-        public ExampleModel? GetById(int id) => _context.Examples.Find(id);
+        public async Task<ExampleModel?> GetById(int id) => await _context.Examples.FindAsync(id);
 
-        public void Add(ExampleModel example)
+        public async Task Add(ExampleModel example)
         {
             _context.Examples.Add(example);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Update(ExampleModel example)
+        public async Task Update(ExampleModel example)
         {
             _context.Examples.Update(example);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(ExampleModel example)
+        public async Task Delete(ExampleModel example)
         {
             _context.Examples.Remove(example);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

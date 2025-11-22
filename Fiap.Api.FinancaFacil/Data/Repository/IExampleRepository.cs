@@ -4,11 +4,11 @@ namespace Fiap.Api.FinancaFacil.Data.Repository
 {
     public interface IExampleRepository
     {
-        IEnumerable<ExampleModel> GetAll();
-        ExampleModel? GetById(int id);
-        void Add(ExampleModel example);
-        void Update(ExampleModel example);
-        void Delete(ExampleModel example);
+        Task<IList<ExampleModel>> GetAll(int lastReference, int size);
+        Task<ExampleModel?> GetById(int id);
+        Task Add(ExampleModel example);
+        Task Update(ExampleModel example);
+        Task Delete(ExampleModel example);
 
     }
 }

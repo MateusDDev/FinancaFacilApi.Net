@@ -4,11 +4,11 @@ namespace Fiap.Api.FinancaFacil.Services
 {
     public interface IExampleService
     {
-        IEnumerable<ExampleModel> GetExamples();
-        ExampleModel? GetExampleById(int id);
-        void CreateExample(ExampleModel example);
-        void UpdateExample(ExampleModel example);
-        void DeleteExample(int id);
+        Task<IList<ExampleModel>> GetExamples(int lastReference, int size);
+        Task<ExampleModel?> GetExampleById(int id);
+        Task CreateExample(ExampleModel example);
+        Task UpdateExample(ExampleModel example);
+        Task DeleteExample(int id);
 
     }
 }

@@ -9,6 +9,6 @@ public class ExampleProfile : Profile
     public ExampleProfile()
     {
         CreateMap<ExampleModel, ExampleViewModel>();
-        CreateMap<ExampleViewModel, ExampleModel>();
+        CreateMap<InputExampleViewModel, ExampleModel>();
     }
 }
