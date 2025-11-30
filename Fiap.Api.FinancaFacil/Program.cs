@@ -17,13 +17,13 @@ builder.Services.AddDbContext<DatabaseContext>(
 
 #region Repositorios
 
-builder.Services.AddScoped<IExampleRepository, ExampleRepository>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 #endregion
 
 #region Services
 
-builder.Services.AddScoped<IExampleService, ExampleService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 #endregion
 
