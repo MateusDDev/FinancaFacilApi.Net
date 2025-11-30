@@ -18,12 +18,14 @@ builder.Services.AddDbContext<DatabaseContext>(
 #region Repositorios
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IRendaRepository, RendaRepository>();
 
 #endregion
 
 #region Services
 
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IRendaService, RendaService>();
 
 #endregion
 
