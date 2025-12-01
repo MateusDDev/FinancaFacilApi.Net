@@ -10,7 +10,7 @@ public class RendaViewModel
 }
 public class InputRendaViewModel
 {
-    public int IdRenda { get; set; }
+ //   public int IdRenda { get; set; }
     public int IdUsuario { get; set; }
     public int CdRenda { get; set; }
     public string TpRenda { get; set; } = string.Empty;
@@ -19,7 +19,7 @@ public class InputRendaViewModel
 
 public class ListRendasViewModel
 {
-    public IEnumerable<RendaViewModel> Renda { get; set; }
+    public IEnumerable<RendaViewModel>? Renda { get; set; }
     public int? NextCursor { get; set; }
 
     public int PageSize { get; set; }
