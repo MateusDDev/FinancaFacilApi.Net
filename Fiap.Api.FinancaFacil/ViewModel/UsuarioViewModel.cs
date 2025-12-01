@@ -23,7 +23,7 @@ public class InputUsuarioViewModel
 
 public class ListUsuariosViewModel
 {
-    public IEnumerable<UsuarioViewModel> Usuarios { get; set; }
+    public IEnumerable<UsuarioViewModel>? Usuarios { get; set; }
     public int? NextCursor { get; set; }
 
     public int PageSize { get; set; }
