@@ -23,7 +23,7 @@ public sealed class UsuarioControllerTests
     }
 
     [Fact]
-    public async Task Get_ReturnsOkResult_WithListExamplesViewModel()
+    public async Task Get_ReturnsOkResult_WithListUsuariosViewModel()
     {
         // Arrange
         var serviceExamples = new List<UsuarioModel>

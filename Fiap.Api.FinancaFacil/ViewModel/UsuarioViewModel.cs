@@ -30,5 +30,5 @@ public class ListUsuariosViewModel
 
     private bool HasMore => NextCursor.HasValue;
 
-    public string NextUrl => HasMore ? $"/usuarios?cursor={NextCursor}&size={PageSize}" : "";
+    public string NextUrl => HasMore ? $"api/usuario?cursor={NextCursor}&size={PageSize}" : "";
 }

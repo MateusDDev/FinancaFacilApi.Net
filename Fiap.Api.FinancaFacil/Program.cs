@@ -19,6 +19,7 @@ builder.Services.AddDbContext<DatabaseContext>(
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IRendaRepository, RendaRepository>();
+builder.Services.AddScoped<ICursoRepository, CursoRepository>();
 
 #endregion
 
@@ -26,6 +27,7 @@ builder.Services.AddScoped<IRendaRepository, RendaRepository>();
 
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IRendaService, RendaService>();
+builder.Services.AddScoped<ICursoService, CursoService>();
 
 #endregion
 
