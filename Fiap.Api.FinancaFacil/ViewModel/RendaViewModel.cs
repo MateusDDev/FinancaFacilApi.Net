@@ -10,7 +10,6 @@ public class RendaViewModel
 }
 public class InputRendaViewModel
 {
- //   public int IdRenda { get; set; }
     public int IdUsuario { get; set; }
     public int CdRenda { get; set; }
     public string TpRenda { get; set; } = string.Empty;
@@ -26,5 +25,5 @@ public class ListRendasViewModel
 
     private bool HasMore => NextCursor.HasValue;
 
-    public string NextUrl => HasMore ? $"/usuarios?cursor={NextCursor}&size={PageSize}" : "";
+    public string NextUrl => HasMore ? $"api/renda?cursor={NextCursor}&size={PageSize}" : "";
 }

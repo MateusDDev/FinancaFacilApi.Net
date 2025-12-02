@@ -23,7 +23,7 @@ public sealed class RendaControllerTests
     }
 
     [Fact]
-    public async Task Get_ReturnsOkResult_WithListExamplesViewModel()
+    public async Task Get_ReturnsOkResult_WithListRendasViewModel()
     {
         // Arrange
         var serviceExamples = new List<RendaModel>
