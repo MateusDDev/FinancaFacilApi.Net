@@ -1,0 +1,524 @@
+{
+	"info": {
+		"_postman_id": "e04e2d8a-10d6-4741-9292-a27c84d5db9b",
+		"name": "financafacilAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49807585",
+		"_collection_link": "https://mariajulia02031748-7863431.postman.co/workspace/Maria-Julia-Santos-Silva's-Work~92ddd6a5-ae65-4707-848f-ffeedfd59b01/collection/49807585-e04e2d8a-10d6-4741-9292-a27c84d5db9b?action=share&source=collection_link&creator=49807585"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5255/api/usuario/13",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcxODU0NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.6VtbThK07lOSOnzUm5LXC-5DgbGZ-VAzLnF8ZLI0x0w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Barear",
+						"description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcyNDA1NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.Vf9WpUfLTmJhvG6KuWEKF1noQaifW4tNsP8HW0YHJpk\n",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cpf\": \"12345678900\",\r\n  \"nmUsuario\": \"Usuário Atualizado\",\r\n  \"email\": \"teste_update@example.com\",\r\n  \"celular\": \"11944445555\",\r\n  \"dtNascimento\": \"2000-01-01\",\r\n  \"senha\": \"321\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5255/api/usuario/13",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5255",
+					"path": [
+						"api",
+						"usuario",
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5255/api/usuario",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcxODU0NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.6VtbThK07lOSOnzUm5LXC-5DgbGZ-VAzLnF8ZLI0x0w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Barear",
+						"description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcyNDA1NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.Vf9WpUfLTmJhvG6KuWEKF1noQaifW4tNsP8HW0YHJpk\n",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cpf\": \"12345678900\",\r\n  \"nmUsuario\": \"Usuário Atualizado\",\r\n  \"email\": \"teste_update@example.com\",\r\n  \"celular\": \"11944445555\",\r\n  \"dtNascimento\": \"2000-01-01\",\r\n  \"senha\": \"321\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5255/api/usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5255",
+					"path": [
+						"api",
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5255/api/usuario/13",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcxODU0NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.6VtbThK07lOSOnzUm5LXC-5DgbGZ-VAzLnF8ZLI0x0w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Barear",
+						"description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcyNDA1NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.Vf9WpUfLTmJhvG6KuWEKF1noQaifW4tNsP8HW0YHJpk\n",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"teste@example.com\",\r\n  \"senha\": \"123456\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5255/api/usuario/13",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5255",
+					"path": [
+						"api",
+						"usuario",
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5255/api/Auth/register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cpf\": \"12345678900\",\r\n  \"nmUsuario\": \"Teste Postman\",\r\n  \"email\": \"teste@example.com\",\r\n  \"celular\": \"11999999999\",\r\n  \"dtNascimento\": \"2000-01-01\",\r\n  \"senha\": \"123456\"\r\n}\r\n\r\n\r\n\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5255/api/Auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5255",
+					"path": [
+						"api",
+						"Auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5255/api/usuario/13",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcxODU0NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.6VtbThK07lOSOnzUm5LXC-5DgbGZ-VAzLnF8ZLI0x0w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Barear",
+						"description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcyNDA1NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.Vf9WpUfLTmJhvG6KuWEKF1noQaifW4tNsP8HW0YHJpk\n",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cpf\": \"12345678900\",\r\n  \"nmUsuario\": \"Usuário Atualizado\",\r\n  \"email\": \"teste_update@example.com\",\r\n  \"celular\": \"11944445555\",\r\n  \"dtNascimento\": \"2000-01-01\",\r\n  \"senha\": \"321\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5255/api/usuario/13",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5255",
+					"path": [
+						"api",
+						"usuario",
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5255/api/Auth/login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcxODU0NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.6VtbThK07lOSOnzUm5LXC-5DgbGZ-VAzLnF8ZLI0x0w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Barear",
+						"description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcyNDA1NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.Vf9WpUfLTmJhvG6KuWEKF1noQaifW4tNsP8HW0YHJpk\n",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"teste@example.com\",\r\n  \"senha\": \"123456\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5255/api/Auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5255",
+					"path": [
+						"api",
+						"Auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5255/api/Auth/register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cpf\": \"12345678900\",\r\n  \"nmUsuario\": \"Teste Postman\",\r\n  \"email\": \"teste@example.com\",\r\n  \"celular\": \"11999999999\",\r\n  \"dtNascimento\": \"2000-01-01\",\r\n  \"senha\": \"123456\"\r\n}\r\n\r\n\r\n\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5255/api/Auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5255",
+					"path": [
+						"api",
+						"Auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5255/api/Auth/register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cpf\": \"12345678900\",\r\n  \"nmUsuario\": \"Teste Postman\",\r\n  \"email\": \"teste@example.com\",\r\n  \"celular\": \"11999999999\",\r\n  \"dtNascimento\": \"2000-01-01\",\r\n  \"senha\": \"123456\"\r\n}\r\n\r\n\r\n\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5255/api/Auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5255",
+					"path": [
+						"api",
+						"Auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5255/api/Auth/login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcxODU0NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.6VtbThK07lOSOnzUm5LXC-5DgbGZ-VAzLnF8ZLI0x0w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Barear",
+						"description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcyNDA1NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.Vf9WpUfLTmJhvG6KuWEKF1noQaifW4tNsP8HW0YHJpk\n",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"teste@example.com\",\r\n  \"senha\": \"123456\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5255/api/Auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5255",
+					"path": [
+						"api",
+						"Auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5255/api/Auth/register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cpf\": \"12345678900\",\r\n  \"nmUsuario\": \"Teste Postman\",\r\n  \"email\": \"teste@example.com\",\r\n  \"celular\": \"11999999999\",\r\n  \"dtNascimento\": \"2000-01-01\",\r\n  \"senha\": \"123456\"\r\n}\r\n\r\n\r\n\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5255/api/Auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5255",
+					"path": [
+						"api",
+						"Auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5255/api/Auth/login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcxODU0NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.6VtbThK07lOSOnzUm5LXC-5DgbGZ-VAzLnF8ZLI0x0w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Barear",
+						"description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcyNDA1NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.Vf9WpUfLTmJhvG6KuWEKF1noQaifW4tNsP8HW0YHJpk\n",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"teste@example.com\",\r\n  \"senha\": \"123456\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5255/api/Auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5255",
+					"path": [
+						"api",
+						"Auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5255/api/usuario/13",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcxODU0NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.6VtbThK07lOSOnzUm5LXC-5DgbGZ-VAzLnF8ZLI0x0w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Barear",
+						"description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoidGVzdGVAZXhhbXBsZS5jb20iLCJub21lIjoiVGVzdGUgUG9zdG1hbiIsImV4cCI6MTc2NDcyNDA1NiwiaXNzIjoiRmlhcC5GaW5hbmNhRmFjaWwuQVBJIn0.Vf9WpUfLTmJhvG6KuWEKF1noQaifW4tNsP8HW0YHJpk\n",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cpf\": \"12345678900\",\r\n  \"nmUsuario\": \"Usuário Atualizado\",\r\n  \"email\": \"teste_update@example.com\",\r\n  \"celular\": \"11944445555\",\r\n  \"dtNascimento\": \"2000-01-01\",\r\n  \"senha\": \"321\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5255/api/usuario/13",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5255",
+					"path": [
+						"api",
+						"usuario",
+						"13"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
