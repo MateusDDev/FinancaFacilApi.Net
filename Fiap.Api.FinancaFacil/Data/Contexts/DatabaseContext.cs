@@ -9,6 +9,8 @@ namespace Fiap.Api.FinancaFacil.Data.Contexts
         
         public virtual DbSet<RendaModel> Rendas { get; set; }
         
+        public virtual DbSet<DespesaModel> Despesas { get; set; }
+        
         public virtual DbSet<CursoModel> Cursos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,6 +34,17 @@ namespace Fiap.Api.FinancaFacil.Data.Contexts
 
                 entity
                     .Property(r => r.VlRenda)
+                    .HasColumnType("decimal(18,2)");
+            });
+            
+            modelBuilder.Entity<DespesaModel>(entity =>
+            {
+                entity.ToTable("tb_despesa");
+
+                entity.HasKey(e => e.IdDespesa);
+
+                entity
+                    .Property(d => d.Valor)
                     .HasColumnType("decimal(18,2)");
             });
 

@@ -24,6 +24,8 @@ builder.Services.AddDbContext<DatabaseContext>(
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IRendaRepository, RendaRepository>();
 builder.Services.AddScoped<ICursoRepository, CursoRepository>();
+builder.Services.AddScoped<IDespesaRepository, DespesaRepository>();
+builder.Services.AddScoped<IDicaRepository, DicaRepository>();
 
 #endregion
 
@@ -32,6 +34,8 @@ builder.Services.AddScoped<ICursoRepository, CursoRepository>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IRendaService, RendaService>();
 builder.Services.AddScoped<ICursoService, CursoService>();
+builder.Services.AddScoped<IDespesaService, DespesaService>();
+builder.Services.AddScoped<IDicaService, DicaService>();
 
 #endregion
 
