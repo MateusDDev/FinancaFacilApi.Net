@@ -1,33 +1,59 @@
-﻿using Fiap.Api.FinancaFacil.Data.Repository;
-using Fiap.Api.FinancaFacil.Models;
+﻿using Fiap.Api.FinancaFacil.Models;
+using Fiap.Api.FinancaFacil.ViewModel;
+using Microsoft.EntityFrameworkCore;
+using Fiap.Api.FinancaFacil.Data.Contexts;
 
-namespace Fiap.Api.FinancaFacil.Services;
-
-public class UsuarioService : IUsuarioService
+namespace Fiap.Api.FinancaFacil.Services
 {
-    private readonly IUsuarioRepository _repository;
-
-    public UsuarioService(IUsuarioRepository repository)
+    public class UsuarioService : IUsuarioService
     {
-        _repository = repository;
-    }
+        private readonly DatabaseContext _context;
 
-    public async Task<IList<UsuarioModel>> GetUsuarios(int lastReference, int size)
-    {
-        return await _repository.GetAll(lastReference, size);
-    }
+        public UsuarioService(DatabaseContext context)
+        {
+            _context = context;
+        }
 
-    public async Task<UsuarioModel?> GetUsuarioById(int id) => await _repository.GetById(id);
+        public async Task<IList<UsuarioModel>> GetUsuarios(int lastReference, int size)
+        {
+            return await _context.Usuarios
+                .Where(u => u.IdUsuario > lastReference)
+                .OrderBy(u => u.IdUsuario)
+                .Take(size)
+                .ToListAsync();
+        }
 
-    public Task CreateUsuario(UsuarioModel usuario) => _repository.Add(usuario);
+        public async Task<UsuarioModel?> GetUsuarioById(int id)
+        {
+            return await _context.Usuarios.FindAsync(id);
+        }
 
-    public Task UpdateUsuario(UsuarioModel usuario) => _repository.Update(usuario);
+        public async Task<UsuarioModel?> GetUsuarioByEmail(string email)
+        {
+            return await _context.Usuarios
+                .FirstOrDefaultAsync(u => u.Email == email);
+        }
 
-    public async Task DeleteUsuario(int id)
-    {
-        var usuario = await _repository.GetById(id);
-            
-        if (usuario is not null)
-            await _repository.Delete(usuario);
+        public async Task CreateUsuario(UsuarioModel usuario)
+        {
+            _context.Usuarios.Add(usuario);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateUsuario(UsuarioModel usuario)
+        {
+            _context.Usuarios.Update(usuario);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteUsuario(int id)
+        {
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario != null)
+            {
+                _context.Usuarios.Remove(usuario);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

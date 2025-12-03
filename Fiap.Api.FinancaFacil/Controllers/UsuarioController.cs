@@ -3,9 +3,11 @@ using Fiap.Api.FinancaFacil.Models;
 using Fiap.Api.FinancaFacil.Services;
 using Fiap.Api.FinancaFacil.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Fiap.Api.FinancaFacil.Controllers;
 
+[Authorize] 
 [ApiController]
 [Route("api/[controller]")]
 public class UsuarioController : ControllerBase
@@ -69,21 +71,34 @@ public class UsuarioController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = usuario.IdUsuario }, viewModel);
     }
     
-    [HttpPut("{id}")]
-    public async Task<ActionResult> Put(int id, [FromBody] InputUsuarioViewModel viewModel)
+ [HttpPut("{id}")]
+public async Task<ActionResult> Put(int id, [FromBody] InputUsuarioViewModel viewModel)
+{
+    var usuario = await _service.GetUsuarioById(id);
+
+    if (usuario is null)
+        return NotFound();
+
+
+    var senhaAntiga = usuario.Senha;
+
+
+    _mapper.Map(viewModel, usuario);
+
+
+    if (string.IsNullOrWhiteSpace(viewModel.Senha))
     {
-        var usuario = await _service.GetUsuarioById(id);
-        
-        if (usuario is null)
-            return NotFound();
-        
-        _mapper.Map(viewModel, usuario);
-        
-        await _service.UpdateUsuario(usuario);
-        
-        return NoContent();
+        usuario.Senha = senhaAntiga; 
     }
-    
+    else
+    {
+        usuario.Senha = BCrypt.Net.BCrypt.HashPassword(viewModel.Senha); 
+
+    await _service.UpdateUsuario(usuario);
+
+    return NoContent();
+}
+
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(int id)
     {

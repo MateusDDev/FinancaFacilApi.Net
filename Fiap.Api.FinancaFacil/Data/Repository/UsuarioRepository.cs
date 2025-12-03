@@ -19,12 +19,20 @@ public class UsuarioRepository : IUsuarioRepository
             .AsNoTracking()
             .Include(c => c.Rendas)
             .Where(c => c.IdUsuario > lastReference)
-            .OrderBy( c => c.IdUsuario) 
+            .OrderBy(c => c.IdUsuario)
             .Take(size + 1)
             .ToListAsync();
     }
 
-    public async Task<UsuarioModel?> GetById(int id) => await _context.Usuarios.FindAsync(id);
+    public async Task<UsuarioModel?> GetById(int id) 
+        => await _context.Usuarios.FindAsync(id);
+
+    public async Task<UsuarioModel?> GetByEmail(string email)
+    {
+        return await _context.Usuarios
+            .AsNoTracking()
+            .FirstOrDefaultAsync(u => u.Email == email);
+    }
 
     public async Task Add(UsuarioModel usuario)
     {

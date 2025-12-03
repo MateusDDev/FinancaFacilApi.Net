@@ -10,4 +10,6 @@ public interface IUsuarioService
     Task CreateUsuario(UsuarioModel example);
     Task UpdateUsuario(UsuarioModel example);
     Task DeleteUsuario(int id);
+    Task<UsuarioModel?> GetUsuarioByEmail(string email);
+
 }

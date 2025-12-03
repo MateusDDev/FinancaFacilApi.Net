@@ -9,4 +9,5 @@ public interface IUsuarioRepository
     Task Add(UsuarioModel example);
     Task Update(UsuarioModel example);
     Task Delete(UsuarioModel example);
+    Task<UsuarioModel?> GetByEmail(string email);
 }

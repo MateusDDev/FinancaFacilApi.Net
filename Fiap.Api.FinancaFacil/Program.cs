@@ -3,6 +3,9 @@ using Fiap.Api.FinancaFacil.Data.Contexts;
 using Fiap.Api.FinancaFacil.Data.Repository;
 using Fiap.Api.FinancaFacil.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +35,6 @@ builder.Services.AddScoped<ICursoService, CursoService>();
 
 #endregion
 
-
 #region AutoMapper
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -46,16 +48,49 @@ builder.Services
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+// ===========================
+// CONFIGURAÇÃO DO JWT
+// ===========================
+
+var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]);
+var issuer = builder.Configuration["Jwt:Issuer"];
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = issuer,
+        IssuerSigningKey = new SymmetricSecurityKey(key)
+    };
+});
+
+builder.Services.AddAuthorization();
+
+
+// ===========================
+
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseAuthorization();
+// Ordem correta:
+app.UseAuthentication(); //  primeiro AUTENTICA
+app.UseAuthorization();  //  depois AUTORIZA
 
 app.MapControllers();
 
