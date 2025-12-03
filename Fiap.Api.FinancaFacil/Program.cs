@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Fiap.Api.FinancaFacil.Data.Contexts;
 using Fiap.Api.FinancaFacil.Data.Repository;
 using Fiap.Api.FinancaFacil.Services;
@@ -38,7 +39,9 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 #endregion
 
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

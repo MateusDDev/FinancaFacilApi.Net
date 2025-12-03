@@ -9,4 +9,5 @@ public class UsuarioModel
     public string Celular { get; set; } = string.Empty;
     public DateTime DtNascimento { get; set; }
     public string Senha { get; set; } = string.Empty;
+    public virtual List<RendaModel> Rendas { get; set; }
 }

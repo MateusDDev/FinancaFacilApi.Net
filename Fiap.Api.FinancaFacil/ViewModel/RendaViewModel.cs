@@ -7,7 +7,9 @@ public class RendaViewModel
     public int CdRenda { get; set; }
     public string TpRenda { get; set; } = string.Empty;
     public decimal VlRenda { get; set; }
+    public UsuarioViewModel Usuario { get; set; }
 }
+
 public class InputRendaViewModel
 {
     public int IdUsuario { get; set; }

@@ -17,6 +17,7 @@ public class RendaRepository : IRendaRepository
     {
         return await _context.Rendas
             .AsNoTracking()
+            .Include(c => c.Usuario)
             .Where(c => c.IdRenda > lastReference)
             .OrderBy( c => c.IdRenda) 
             .Take(size + 1)

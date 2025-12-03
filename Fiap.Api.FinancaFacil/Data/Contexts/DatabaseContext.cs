@@ -18,6 +18,10 @@ namespace Fiap.Api.FinancaFacil.Data.Contexts
                 entity.ToTable("tb_usuario");
 
                 entity.HasKey(e => e.IdUsuario);
+
+                entity.HasMany(e => e.Rendas)
+                    .WithOne(r => r.Usuario)
+                    .HasForeignKey(r => r.IdUsuario);
             });
 
             modelBuilder.Entity<RendaModel>(entity =>

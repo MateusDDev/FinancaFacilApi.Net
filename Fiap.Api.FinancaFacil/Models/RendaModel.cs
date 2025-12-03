@@ -7,4 +7,5 @@ public class RendaModel
     public int CdRenda { get; set; }
     public string TpRenda { get; set; } = string.Empty;
     public decimal VlRenda { get; set; }
+    public virtual UsuarioModel Usuario { get; set; }
 }
