@@ -7,6 +7,7 @@ public interface IUsuarioService
 {
     Task<IList<UsuarioModel>> GetUsuarios(int lastReference, int size);
     Task<UsuarioModel?> GetUsuarioById(int id);
+    Task<UsuarioModel?> GetUsuarioByEmail(string email);
     Task CreateUsuario(UsuarioModel example);
     Task UpdateUsuario(UsuarioModel example);
     Task DeleteUsuario(int id);

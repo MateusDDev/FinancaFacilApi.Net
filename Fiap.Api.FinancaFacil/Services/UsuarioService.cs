@@ -1,5 +1,6 @@
 ﻿using Fiap.Api.FinancaFacil.Data.Repository;
 using Fiap.Api.FinancaFacil.Models;
+using System.Linq;
 
 namespace Fiap.Api.FinancaFacil.Services;
 
@@ -18,6 +19,13 @@ public class UsuarioService : IUsuarioService
     }
 
     public async Task<UsuarioModel?> GetUsuarioById(int id) => await _repository.GetById(id);
+
+   
+    public async Task<UsuarioModel?> GetUsuarioByEmail(string email)
+    {
+        var usuarios = await _repository.GetAll(0, 1000);
+        return usuarios.FirstOrDefault(u => u.Email == email);
+    }
 
     public Task CreateUsuario(UsuarioModel usuario) => _repository.Add(usuario);
 

@@ -45,7 +45,8 @@ public class UsuarioController : ControllerBase
 
         return Ok(viewModel);
     }
-    
+
+
     [HttpGet("{id}")]
     public async Task<ActionResult<UsuarioViewModel>> Get(int id)
     {

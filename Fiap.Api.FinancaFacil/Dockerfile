@@ -8,7 +8,8 @@ WORKDIR /src
 
 COPY *.sln .
 COPY Fiap.Api.FinancaFacil/Fiap.Api.FinancaFacil.csproj Fiap.Api.FinancaFacil/
-RUN dotnet restore
+
+RUN dotnet restore Fiap.Api.FinancaFacil/Fiap.Api.FinancaFacil.csproj
 
 COPY . .
 WORKDIR /src/Fiap.Api.FinancaFacil
