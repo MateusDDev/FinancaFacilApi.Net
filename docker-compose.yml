@@ -1,0 +1,33 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Fiap.Api.FinancaFacil/Dockerfile
+    container_name: financa-api
+    ports:
+      - "5000:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=User Id=system;Password=123456;Data Source=db:1521/FREEPDB1
+
+  db:
+    image: gvenzl/oracle-free:latest
+    container_name: oracle-db
+    environment:
+      - ORACLE_PASSWORD=123456
+    ports:
+      - "1521:1521"
+    volumes:
+      - oracle_data:/opt/oracle/oradata
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  oracle_data:
