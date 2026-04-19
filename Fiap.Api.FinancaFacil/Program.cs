@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 #region Banco de dados
 
-var connectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<DatabaseContext>(
     opt => opt.UseOracle(connectionString).EnableSensitiveDataLogging()
