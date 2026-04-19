@@ -1,19 +1,31 @@
-﻿name: Deploy DEV
+﻿name: Deploy
 
 on:
   workflow_run:
     workflows: ["CI"]
     types:
       - completed
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Ambiente de deploy"
+        required: true
+        default: "development"
 
 jobs:
-  deploy-dev:
-    if: >
-      github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.head_branch == 'develop'
-
+  deploy:
     runs-on: ubuntu-latest
-    environment: development
+
+    environment: >
+      ${{
+        github.event_name == 'workflow_dispatch' && github.event.inputs.environment ||
+        (github.event.workflow_run.head_branch == 'main' && 'production') ||
+        'development'
+      }}
+
+    if: >
+      (github.event_name == 'workflow_dispatch') ||
+      (github.event.workflow_run.conclusion == 'success')
 
     steps:
       - uses: actions/checkout@v3
