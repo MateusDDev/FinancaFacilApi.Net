@@ -29,6 +29,8 @@ jobs:
       - name: Build e Push
         uses: docker/build-push-action@v5
         with:
+          context: .
+          file: ./Fiap.Api.FinancaFacil/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_IMAGE }}
 

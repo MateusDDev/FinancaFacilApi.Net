@@ -1,6 +1,8 @@
 services:
   api:
-    image: financa-api:staging
+    build:
+      context: .
+      dockerfile: Fiap.Api.FinancaFacil/Dockerfile
     container_name: financa-api
     ports:
       - "5000:8080"
