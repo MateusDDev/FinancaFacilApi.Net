@@ -1,16 +1,11 @@
 ﻿name: Deploy
 
 on:
-  workflow_run:
-    workflows: ["CI"]
-    types:
-      - completed
+  push:
+    branches:
+      - development
+      - main
   workflow_dispatch:
-    inputs:
-      environment:
-        description: "Ambiente de deploy"
-        required: true
-        default: "development"
 
 jobs:
   deploy:
@@ -18,14 +13,9 @@ jobs:
 
     environment: >
       ${{
-        github.event_name == 'workflow_dispatch' && github.event.inputs.environment ||
-        (github.event.workflow_run.head_branch == 'main' && 'production') ||
+        github.ref == 'refs/heads/main' && 'production' ||
         'development'
       }}
-
-    if: >
-      (github.event_name == 'workflow_dispatch') ||
-      (github.event.workflow_run.conclusion == 'success')
 
     steps:
       - uses: actions/checkout@v3
