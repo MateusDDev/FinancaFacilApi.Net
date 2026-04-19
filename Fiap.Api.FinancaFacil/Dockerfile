@@ -6,14 +6,13 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
-COPY Fiap.Api.FinancaFacil.sln .
+COPY *.sln .
 COPY Fiap.Api.FinancaFacil/Fiap.Api.FinancaFacil.csproj Fiap.Api.FinancaFacil/
 
-WORKDIR /src/Fiap.Api.FinancaFacil
-RUN dotnet restore Fiap.Api.FinancaFacil.csproj
+RUN dotnet restore Fiap.Api.FinancaFacil/Fiap.Api.FinancaFacil.csproj
 
 COPY . .
-
+WORKDIR /src/Fiap.Api.FinancaFacil
 RUN dotnet build -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
