@@ -1,8 +1,6 @@
 services:
   api:
-    build:
-      context: .
-      dockerfile: Fiap.Api.FinancaFacil/Dockerfile
+    image: financa-api:staging
     container_name: financa-api
     ports:
       - "5000:8080"
@@ -11,14 +9,14 @@ services:
         condition: service_healthy
     environment:
       - ASPNETCORE_URLS=http://+:8080
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=User Id=system;Password=123456;Data Source=db:1521/FREEPDB1
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrings__DefaultConnection=${CONNECTION_STRING}
 
   db:
     image: gvenzl/oracle-free:latest
     container_name: oracle-db
     environment:
-      - ORACLE_PASSWORD=123456
+      - ORACLE_PASSWORD=${DB_PASSWORD}
     ports:
       - "1521:1521"
     volumes:
