@@ -1,4 +1,4 @@
-﻿name: CD
+﻿name: Deploy
 
 on:
   workflow_run:
@@ -22,7 +22,7 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
-      - name: Build e Push Docker
+      - name: Build e Push
         uses: docker/build-push-action@v5
         with:
           context: .
