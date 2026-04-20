@@ -30,10 +30,5 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_IMAGE }}
 
-      - name: Deploy staging
-        if: ${{ github.event.workflow_run.head_branch == 'development' }}
-        run: curl -X POST "${{ secrets.DEPLOY_HOOK_STAGING }}"
-
-      - name: Deploy production
-        if: ${{ github.event.workflow_run.head_branch == 'main' }}
-        run: curl -X POST "${{ secrets.DEPLOY_HOOK_PROD }}"
+      - name: Deploy
+        run: curl -X POST "${{ secrets.DEPLOY_HOOK }}"
