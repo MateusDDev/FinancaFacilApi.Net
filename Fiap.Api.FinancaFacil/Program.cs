@@ -13,9 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<DatabaseContext>(
-    opt => opt.UseOracle(connectionString).EnableSensitiveDataLogging()
-);
+if (builder.Environment.IsEnvironment("Local"))
+    builder.Services.AddDbContext<DatabaseContext>(opt => opt.UseOracle(connectionString));
+else
+    builder.Services.AddDbContext<DatabaseContext>(opt => opt.UseNpgsql(connectionString));
 
 #endregion
 
@@ -86,16 +87,19 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
-// Ordem correta:
-app.UseAuthentication(); //  primeiro AUTENTICA
-app.UseAuthorization();  //  depois AUTORIZA
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
+
+if (!app.Environment.IsEnvironment("Local"))
+{
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+    db.Database.Migrate();
+}
 
 app.Run();
