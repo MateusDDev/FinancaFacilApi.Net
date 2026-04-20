@@ -29,6 +29,7 @@ jobs:
           file: ./Fiap.Api.FinancaFacil/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_IMAGE }}
+          no-cache: true
 
       - name: Deploy
         run: curl -X POST "${{ secrets.DEPLOY_HOOK }}"
