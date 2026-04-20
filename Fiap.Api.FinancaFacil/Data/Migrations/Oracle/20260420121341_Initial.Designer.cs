@@ -9,11 +9,11 @@ using Oracle.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace Fiap.Api.FinancaFacil.Migrations
+namespace Fiap.Api.FinancaFacil.Data.Migrations.Oracle
 {
-    [DbContext(typeof(DatabaseContext))]
-    [Migration("20251202220311_CreateCursoTable")]
-    partial class CreateCursoTable
+    [DbContext(typeof(OracleDatabaseContext))]
+    [Migration("20260420121341_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,6 +60,32 @@ namespace Fiap.Api.FinancaFacil.Migrations
                     b.ToTable("tb_curso", (string)null);
                 });
 
+            modelBuilder.Entity("Fiap.Api.FinancaFacil.Models.DespesaModel", b =>
+                {
+                    b.Property<int>("IdDespesa")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("NUMBER(10)");
+
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDespesa"));
+
+                    b.Property<string>("Categoria")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("TIMESTAMP(7)");
+
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("NUMBER(10)");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("IdDespesa");
+
+                    b.ToTable("tb_despesa", (string)null);
+                });
+
             modelBuilder.Entity("Fiap.Api.FinancaFacil.Models.RendaModel", b =>
                 {
                     b.Property<int>("IdRenda")
@@ -83,6 +109,8 @@ namespace Fiap.Api.FinancaFacil.Migrations
 
                     b.HasKey("IdRenda");
 
+                    b.HasIndex("IdUsuario");
+
                     b.ToTable("tb_renda", (string)null);
                 });
 
@@ -96,30 +124,52 @@ namespace Fiap.Api.FinancaFacil.Migrations
 
                     b.Property<string>("Celular")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("NVARCHAR2(2000)")
+                        .HasAnnotation("Relational:JsonPropertyName", "celular");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("NVARCHAR2(2000)")
+                        .HasAnnotation("Relational:JsonPropertyName", "cpf");
 
                     b.Property<DateTime>("DtNascimento")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("TIMESTAMP(7)")
+                        .HasAnnotation("Relational:JsonPropertyName", "dtNascimento");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("NVARCHAR2(2000)")
+                        .HasAnnotation("Relational:JsonPropertyName", "email");
 
                     b.Property<string>("NmUsuario")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("NVARCHAR2(2000)")
+                        .HasAnnotation("Relational:JsonPropertyName", "nmUsuario");
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("NVARCHAR2(2000)")
+                        .HasAnnotation("Relational:JsonPropertyName", "senha");
 
                     b.HasKey("IdUsuario");
 
                     b.ToTable("tb_usuario", (string)null);
+                });
+
+            modelBuilder.Entity("Fiap.Api.FinancaFacil.Models.RendaModel", b =>
+                {
+                    b.HasOne("Fiap.Api.FinancaFacil.Models.UsuarioModel", "Usuario")
+                        .WithMany("Rendas")
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Fiap.Api.FinancaFacil.Models.UsuarioModel", b =>
+                {
+                    b.Navigation("Rendas");
                 });
 #pragma warning restore 612, 618
         }

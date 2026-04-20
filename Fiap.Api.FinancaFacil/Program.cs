@@ -14,9 +14,22 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 if (builder.Environment.IsEnvironment("Local"))
-    builder.Services.AddDbContext<DatabaseContext>(opt => opt.UseOracle(connectionString));
+{
+    builder.Services
+        .AddDbContext<OracleDatabaseContext>(opt => opt
+            .UseOracle(connectionString, o => o.MigrationsAssembly(typeof(OracleDatabaseContext).Assembly.FullName)));
+}
 else
-    builder.Services.AddDbContext<DatabaseContext>(opt => opt.UseNpgsql(connectionString));
+{
+    builder.Services
+        .AddDbContext<PostgresDatabaseContext>(opt => opt
+            .UseNpgsql(connectionString, o => o.MigrationsAssembly(typeof(PostgresDatabaseContext).Assembly.FullName)));
+}
+
+builder.Services.AddScoped<DatabaseContext>(sp =>
+    builder.Environment.IsEnvironment("Local")
+        ? sp.GetRequiredService<OracleDatabaseContext>()
+        : sp.GetRequiredService<PostgresDatabaseContext>());
 
 #endregion
 
@@ -95,11 +108,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-if (!app.Environment.IsEnvironment("Local"))
-{
-    using var scope = app.Services.CreateScope();
-    var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
-    db.Database.Migrate();
-}
+using var scope = app.Services.CreateScope();
+var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+db.Database.Migrate();
 
 app.Run();
